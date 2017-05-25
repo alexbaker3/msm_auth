@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  # Routes for the Bookmark resource:
+  # CREATE
+  get "/bookmarks/new", :controller => "bookmarks", :action => "new"
+  post "/create_bookmark", :controller => "bookmarks", :action => "create"
+
+  # READ
+  get "/bookmarks", :controller => "bookmarks", :action => "index"
+  get "/bookmarks/:id", :controller => "bookmarks", :action => "show"
+
+  # UPDATE
+  get "/bookmarks/:id/edit", :controller => "bookmarks", :action => "edit"
+  post "/update_bookmark/:id", :controller => "bookmarks", :action => "update"
+
+  # DELETE
+  get "/delete_bookmark/:id", :controller => "bookmarks", :action => "destroy"
+  #------------------------------
+
+  devise_for :users
   # Routes for the Character resource:
   # CREATE
   get "/characters/new", :controller => "characters", :action => "new"
@@ -33,7 +51,7 @@ Rails.application.routes.draw do
   get "/delete_actor/:id", :controller => "actors", :action => "destroy"
   #------------------------------
 
-  get "/", :controller => "movies", :action => "index"
+  #get "/", :controller => "movies", :action => "index"
 
   # Routes for the Movie resource:
   # CREATE
@@ -73,7 +91,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root to: 'movies#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
